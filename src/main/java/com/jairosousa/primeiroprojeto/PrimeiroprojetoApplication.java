@@ -1,5 +1,6 @@
 package com.jairosousa.primeiroprojeto;
 
+import com.jairosousa.primeiroprojeto.utils.SenhaUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -19,7 +20,13 @@ public class PrimeiroprojetoApplication {
 	@Bean
 	public CommandLineRunner commandLineRunner() {
 		return args -> {
-			System.out.println("### Quantidade de Elementos por pagina = " + this.qtdPorPagina);
+			String senhaEncoded = SenhaUtils.gerarBCrypt("123456");
+			System.out.println("Senha encoded novamente: " + senhaEncoded);
+
+			senhaEncoded = SenhaUtils.gerarBCrypt("123456");
+			System.out.println("Senha encoded novamente: " + senhaEncoded);
+
+			System.out.println("Senha válida: " + SenhaUtils.senhaValida("123456", senhaEncoded));
 		};
 	}
 }
